@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="bgc grey">
+        <!-- RESUME -->
+        <div class="block">
+            <div class="top-bar">
+                <h2>Ajouter un Note</h2>
+            </div>
+            <div class="content">
+                <div>
+                    <div class="text-center m-4">
+                    {{ form_start(form) }}
+                    {{ form_row(form.matiereId) }}
+                    {{ form_row(form.userId) }}
+                    {{ form_row(form.coefficient) }}
+                    {{ form_row(form.note) }}
+                   {{ form_widget(form.save, { 'label': 'Ajouter' })}}
+                    </div>
+                    {{ form_row(form._token) }}
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#note_form_matiereId').select2({
+                placeholder: "Selectionner une matiere",
+                allowClear: true
+            });
+
+            $('#note_form_userId').select2({
+                placeholder: "Selectionner un eleve",
+                allowClear: true
+            });
+        })
+    </script>
+
+
+{% endblock %}

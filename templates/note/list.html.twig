@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<body>
+    <tbody>
+        <table class="table">
+            {% set count = 1 %}
+        {% for matiere in listmatiere %}
+            <tr class="bgc">
+
+                <td>{{ matiere.name }}</td>
+                {% for  note in listnote %}
+                  {% if matiere.id  ==  note.matiere_id_id  %}
+                    <td>{{ note.note }}</td>
+                  {% endif %}
+                {% endfor %}
+                <td> Moyenne {{ listmoyenne[count] }}</td>
+                <td>
+                    <div>
+                        <a href="#">
+                        </a>
+                    </div>
+                    <div class="rounded-icon-delete">
+                        <form action="#" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ matiere.id) }}">
+                            <button class="delete">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {%  set count = count + 1  %}
+        {% endfor %}
+
+        </tbody>
+    </table>
+</body>
+    <div>Moyenne : {{ moyenne }}</div>
+{%  endblock %}
