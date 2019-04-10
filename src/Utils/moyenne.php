@@ -33,7 +33,7 @@ class moyenne extends AbstractController
             if ($coeff != 0)
                 $array_moyenne[$i] = $array_moyenne[$i] / $coeff;
         }
-        dump($array);
+
         return $array_moyenne;
     }
 
@@ -42,8 +42,8 @@ class moyenne extends AbstractController
         $res = 0;
         $total_coeff = 0;
 
-        for ($i = 1; $i < count($array_matiere); $i++) {
-            $res += $array_note[$i ] * $array_matiere[$i]['coefficient'];
+        for ($i = 0; $i < count($array_matiere); $i++) {
+            $res += $array_note[$i + 1] * $array_matiere[$i]['coefficient'];
             $total_coeff +=  $array_matiere[$i]['coefficient'];
         }
 
