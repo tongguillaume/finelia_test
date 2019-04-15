@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<body>
+    <tbody>
+        <table class="table">
+            {% set count = 1 %}
+            <tr>
+                <th>Matiere</th>
+                <th>Notes</th>
+                <th>Moyenne</th>
+            </tr>
+            {% for matiere in listmatiere %}
+            <tr class="bgc">
+                {% set str = "" %}
+                <td>{{ matiere.name }}</td>
+                {% for  note in listnote %}
+                  {% if matiere.id  ==  note.matiere_id_id  %}
+                       {%  set str = str ~ note.note ~ "  " %}
+                  {% endif %}
+                {% endfor %}
+                <td>{{ str }}</td>
+                <td> {{ listmoyenne[count] | number_format(2, '.' , ',') }}</td>
+            </tr>
+            {%  set count = count + 1  %}
+        {% endfor %}
+
+        </tbody>
+    </table>
+</body>
+    <div>Moyenne : {{ moyenne | number_format(2, '.' , ',') }}</div>
+{%  endblock %}
